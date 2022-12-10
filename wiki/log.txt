@@ -1,0 +1,4 @@
+Found redirect: 0
+Found redirect ASC: 0
+Just ASC :0
+not found: ['Michael Brown Okinawa assault incident', 'Taiwanese (linguistics)', 'Deep democracy', 'House of Hador', 'Administrative receivership', 'Reasonable Doubt', 'List of basic geography topics', 'Newshounds', 'Insurrection (StarCraft)', 'James Root', 'Richard Bassett', 'Leila Haaparanta', 'Almirante Lynch class destroyer', 'Darin Dunn', 'Romegas', 'Cassio Raposo do Amaral', 'Erin Abrahamson', 'Daido Juku', 'Francisco Pacheco (singer)', 'MegaDriver', 'Kashish Das Shrestha', 'Partida Tequila', 'Min-nyi Min-tha', 'Johnny Ridden', 'PAF Gold Wings Badge', 'Amaury VII of Narbonne', 'Seat Pagine Gialle', 'Stef la Kallejera', 'Fortitudo Cosenza', 'M-169 (Michigan highway)', 'Carl Johnson (goalkeeper)', 'Futurism CD', 'Scott Friedman', 'SBS Transit Service 225', 'Memphis Panthers', 'Sandy Linzer and Denny Randell', 'Yitzchak Levine', 'Chicago Area Radio Monitoring Association']
