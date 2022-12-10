@@ -1,1 +1,1 @@
-deny from all
+ErrorDocument 404 /404.html
