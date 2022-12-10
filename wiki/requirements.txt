@@ -1,0 +1,5 @@
+django>=2.2.18
+django-heroku
+markdown2==2.4.0
+gunicorn==19.9.0
+psycopg2
