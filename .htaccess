@@ -1,1 +1,3 @@
-ErrorDocument 404 https://site56/errorpage
+ErrorDocument 404 http://example.com/404/
+RewriteCond %{REQUEST_URI} ^/404/$
+RewriteRule ^(.*)$ /pages/errors/404.php [L]
