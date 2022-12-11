@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<javascript app="blog">
+ <file javascript_app="blog" javascript_location="front" javascript_path="controllers/browse" javascript_name="ips.browse.list.js" javascript_type="controller" javascript_version="101033" javascript_position="1000050">/**
+ * IPS Community Suite 4
+ * (c) 2013 Invision Power Services - http://www.invisionpower.com
+ *
+ * ips.browse.list.js - Blog browse list controller
+ *
+ * Author: Rikki Tissier
+ */
+;( function($, _, undefined){
+	&quot;use strict&quot;;
+
+	ips.controller.register('blog.front.browse.list', {
+
+		initialize: function () {
+			this.on( 'change', '[data-role=&quot;moderation&quot;]', this.selectEntry );
+		},
+
+		/**
+		 * Toggles classes when the moderation checkbox is checked
+		 *
+		 * @param	{event} 	e 		Event object
+		 * @returns {void}
+		 */
+		selectEntry: function (e) {
+			var row = $( e.currentTarget ).closest('.cBlogView_entry');
+			row.toggleClass( 'cBlogView_entrySelected', $( e.currentTarget ).is(':checked') );
+		}
+	});
+}(jQuery, _));</file>
+ <order app="global" path="/dev/js//framework/">templates
+common/ui
+common/utils
+common
+controllers</order>
+ <order app="global" path="/dev/js//library/">underscore
+jquery
+mustache
+jstz
+Debug.js
+app.js</order>
+ <order app="global" path="/dev/js//library//jquery">jquery.js
+jquery.history.js
+jquery.transform.js</order>
+</javascript>

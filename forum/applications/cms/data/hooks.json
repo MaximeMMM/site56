@@ -1,0 +1,30 @@
+{
+    "Database": {
+        "type": "C",
+        "class": "\\IPS\\Data\\Store\\Database"
+    },
+    "Topic": {
+        "type": "C",
+        "class": "\\IPS\\forums\\Topic"
+    },
+    "Widget": {
+        "type": "C",
+        "class": "\\IPS\\Widget"
+    },
+    "Post": {
+        "type": "C",
+        "class": "\\IPS\\forums\\Topic\\Post"
+    },
+    "Url": {
+        "type": "C",
+        "class": "\\IPS\\Http\\Url"
+    },
+    "websiteUrl": {
+        "type": "S",
+        "class": "\\IPS\\Theme\\class_core_front_global"
+    },
+    "Output": {
+        "type": "C",
+        "class": "\\IPS\\Output"
+    }
+}

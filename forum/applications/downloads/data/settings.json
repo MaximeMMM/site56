@@ -1,0 +1,18 @@
+[
+    {
+        "key": "idm_antileech",
+        "default": "1"
+    },
+    {
+        "key": "idm_link_blacklist",
+        "default": ""
+    },
+    {
+        "key": "idm_rss",
+        "default": "1"
+    },
+    {
+        "key": "idm_watermarkpath",
+        "default": ""
+    }
+]
