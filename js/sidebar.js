@@ -1,253 +1,131 @@
-const ANIMATION_DURATION = 300;
+/**
+ * Created by Kupletsky Sergey on 17.10.14.
+ *
+ * Material Sidebar (Profile menu)
+ * Tested on Win8.1 with browsers: Chrome 37, Firefox 32, Opera 25, IE 11, Safari 5.1.7
+ * You can use this sidebar in Bootstrap (v3) projects. HTML-markup like Navbar bootstrap component will make your work easier.
+ * Dropdown menu and sidebar toggle button works with JQuery and Bootstrap.min.js
+ */
 
-const SIDEBAR_EL = document.getElementById("sidebar");
+// Sidebar toggle
+//
+// -------------------
+$(document).ready(function() {
+    var overlay = $('.sidebar-overlay');
 
-const SUB_MENU_ELS = document.querySelectorAll(
-  ".menu > ul > .menu-item.sub-menu"
-);
-
-const FIRST_SUB_MENUS_BTN = document.querySelectorAll(
-  ".menu > ul > .menu-item.sub-menu > a"
-);
-
-const INNER_SUB_MENUS_BTN = document.querySelectorAll(
-  ".menu > ul > .menu-item.sub-menu .menu-item.sub-menu > a"
-);
-
-class PopperObject {
-  instance = null;
-  reference = null;
-  popperTarget = null;
-
-  constructor(reference, popperTarget) {
-    this.init(reference, popperTarget);
-  }
-
-  init(reference, popperTarget) {
-    this.reference = reference;
-    this.popperTarget = popperTarget;
-    this.instance = Popper.createPopper(this.reference, this.popperTarget, {
-      placement: "right",
-      strategy: "fixed",
-      resize: true,
-      modifiers: [
-        {
-          name: "computeStyles",
-          options: {
-            adaptive: false
-          }
-        },
-        {
-          name: "flip",
-          options: {
-            fallbackPlacements: ["left", "right"]
-          }
+    $('.sidebar-toggle').on('click', function() {
+        var sidebar = $('#sidebar');
+        sidebar.toggleClass('open');
+        if ((sidebar.hasClass('sidebar-fixed-left') || sidebar.hasClass('sidebar-fixed-right')) && sidebar.hasClass('open')) {
+            overlay.addClass('active');
+        } else {
+            overlay.removeClass('active');
         }
-      ]
     });
 
-    document.addEventListener(
-      "click",
-      (e) => this.clicker(e, this.popperTarget, this.reference),
-      false
-    );
-
-    const ro = new ResizeObserver(() => {
-      this.instance.update();
+    overlay.on('click', function() {
+        $(this).removeClass('active');
+        $('#sidebar').removeClass('open');
     });
 
-    ro.observe(this.popperTarget);
-    ro.observe(this.reference);
-  }
+});
 
-  clicker(event, popperTarget, reference) {
-    if (
-      SIDEBAR_EL.classList.contains("collapsed") &&
-      !popperTarget.contains(event.target) &&
-      !reference.contains(event.target)
-    ) {
-      this.hide();
-    }
-  }
+// Sidebar constructor
+//
+// -------------------
+$(document).ready(function() {
 
-  hide() {
-    this.instance.state.elements.popper.style.visibility = "hidden";
-  }
-}
+    var sidebar = $('#sidebar');
+    var sidebarHeader = $('#sidebar .sidebar-header');
+    var sidebarImg = sidebarHeader.css('background-image');
+    var toggleButtons = $('.sidebar-toggle');
 
-class Poppers {
-  subMenuPoppers = [];
+    // Hide toggle buttons on default position
+    toggleButtons.css('display', 'none');
+    $('body').css('display', 'table');
 
-  constructor() {
-    this.init();
-  }
 
-  init() {
-    SUB_MENU_ELS.forEach((element) => {
-      this.subMenuPoppers.push(
-        new PopperObject(element, element.lastElementChild)
-      );
-      this.closePoppers();
-    });
-  }
-
-  togglePopper(target) {
-    if (window.getComputedStyle(target).visibility === "hidden")
-      target.style.visibility = "visible";
-    else target.style.visibility = "hidden";
-  }
-
-  updatePoppers() {
-    this.subMenuPoppers.forEach((element) => {
-      element.instance.state.elements.popper.style.display = "none";
-      element.instance.update();
-    });
-  }
-
-  closePoppers() {
-    this.subMenuPoppers.forEach((element) => {
-      element.hide();
-    });
-  }
-}
-
-const slideUp = (target, duration = ANIMATION_DURATION) => {
-  const { parentElement } = target;
-  parentElement.classList.remove("open");
-  target.style.transitionProperty = "height, margin, padding";
-  target.style.transitionDuration = `${duration}ms`;
-  target.style.boxSizing = "border-box";
-  target.style.height = `${target.offsetHeight}px`;
-  target.offsetHeight;
-  target.style.overflow = "hidden";
-  target.style.height = 0;
-  target.style.paddingTop = 0;
-  target.style.paddingBottom = 0;
-  target.style.marginTop = 0;
-  target.style.marginBottom = 0;
-  window.setTimeout(() => {
-    target.style.display = "none";
-    target.style.removeProperty("height");
-    target.style.removeProperty("padding-top");
-    target.style.removeProperty("padding-bottom");
-    target.style.removeProperty("margin-top");
-    target.style.removeProperty("margin-bottom");
-    target.style.removeProperty("overflow");
-    target.style.removeProperty("transition-duration");
-    target.style.removeProperty("transition-property");
-  }, duration);
-};
-const slideDown = (target, duration = ANIMATION_DURATION) => {
-  const { parentElement } = target;
-  parentElement.classList.add("open");
-  target.style.removeProperty("display");
-  let { display } = window.getComputedStyle(target);
-  if (display === "none") display = "block";
-  target.style.display = display;
-  const height = target.offsetHeight;
-  target.style.overflow = "hidden";
-  target.style.height = 0;
-  target.style.paddingTop = 0;
-  target.style.paddingBottom = 0;
-  target.style.marginTop = 0;
-  target.style.marginBottom = 0;
-  target.offsetHeight;
-  target.style.boxSizing = "border-box";
-  target.style.transitionProperty = "height, margin, padding";
-  target.style.transitionDuration = `${duration}ms`;
-  target.style.height = `${height}px`;
-  target.style.removeProperty("padding-top");
-  target.style.removeProperty("padding-bottom");
-  target.style.removeProperty("margin-top");
-  target.style.removeProperty("margin-bottom");
-  window.setTimeout(() => {
-    target.style.removeProperty("height");
-    target.style.removeProperty("overflow");
-    target.style.removeProperty("transition-duration");
-    target.style.removeProperty("transition-property");
-  }, duration);
-};
-
-const slideToggle = (target, duration = ANIMATION_DURATION) => {
-  if (window.getComputedStyle(target).display === "none")
-    return slideDown(target, duration);
-  return slideUp(target, duration);
-};
-
-const PoppersInstance = new Poppers();
-
-/**
- * wait for the current animation to finish and update poppers position
- */
-const updatePoppersTimeout = () => {
-  setTimeout(() => {
-    PoppersInstance.updatePoppers();
-  }, ANIMATION_DURATION);
-};
-
-/**
- * sidebar collapse handler
- */
-document.getElementById("btn-collapse").addEventListener("click", () => {
-  SIDEBAR_EL.classList.toggle("collapsed");
-  PoppersInstance.closePoppers();
-  if (SIDEBAR_EL.classList.contains("collapsed"))
-    FIRST_SUB_MENUS_BTN.forEach((element) => {
-      element.parentElement.classList.remove("open");
+    // Sidebar position
+    $('#sidebar-position').change(function() {
+        var value = $( this ).val();
+        sidebar.removeClass('sidebar-fixed-left sidebar-fixed-right sidebar-stacked').addClass(value).addClass('open');
+        if (value == 'sidebar-fixed-left' || value == 'sidebar-fixed-right') {
+            $('.sidebar-overlay').addClass('active');
+        }
+        // Show toggle buttons
+        if (value != '') {
+            toggleButtons.css('display', 'initial');
+            $('body').css('display', 'initial');
+        } else {
+            // Hide toggle buttons
+            toggleButtons.css('display', 'none');
+            $('body').css('display', 'table');
+        }
     });
 
-  updatePoppersTimeout();
+    // Sidebar theme
+    $('#sidebar-theme').change(function() {
+        var value = $( this ).val();
+        sidebar.removeClass('sidebar-default sidebar-inverse sidebar-colored sidebar-colored-inverse').addClass(value)
+    });
+
+    // Header cover
+    $('#sidebar-header').change(function() {
+        var value = $(this).val();
+
+        $('.sidebar-header').removeClass('header-cover').addClass(value);
+
+        if (value == 'header-cover') {
+            sidebarHeader.css('background-image', sidebarImg)
+        } else {
+            sidebarHeader.css('background-image', '')
+        }
+    });
 });
 
 /**
- * sidebar toggle handler (on break point )
+ * Created by Kupletsky Sergey on 08.09.14.
+ *
+ * Add JQuery animation to bootstrap dropdown elements.
  */
-document.getElementById("btn-toggle").addEventListener("click", () => {
-  SIDEBAR_EL.classList.toggle("toggled");
 
-  updatePoppersTimeout();
-});
+(function($) {
+    var dropdown = $('.dropdown');
 
-/**
- * toggle sidebar on overlay click
- */
-document.getElementById("overlay").addEventListener("click", () => {
-  SIDEBAR_EL.classList.toggle("toggled");
-});
+    // Add slidedown animation to dropdown
+    dropdown.on('show.bs.dropdown', function(e){
+        $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
+    });
 
-const defaultOpenMenus = document.querySelectorAll(".menu-item.sub-menu.open");
+    // Add slideup animation to dropdown
+    dropdown.on('hide.bs.dropdown', function(e){
+        $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
+    });
+})(jQuery);
 
-defaultOpenMenus.forEach((element) => {
-  element.lastElementChild.style.display = "block";
-});
 
-/**
- * handle top level submenu click
- */
-FIRST_SUB_MENUS_BTN.forEach((element) => {
-  element.addEventListener("click", () => {
-    if (SIDEBAR_EL.classList.contains("collapsed"))
-      PoppersInstance.togglePopper(element.nextElementSibling);
-    else {
-      const parentMenu = element.closest(".menu.open-current-submenu");
-      if (parentMenu)
-        parentMenu
-          .querySelectorAll(":scope > ul > .menu-item.sub-menu > a")
-          .forEach(
-            (el) =>
-              window.getComputedStyle(el.nextElementSibling).display !==
-                "none" && slideUp(el.nextElementSibling)
-          );
-      slideToggle(element.nextElementSibling);
-    }
-  });
-});
 
-/**
- * handle inner submenu click
- */
-INNER_SUB_MENUS_BTN.forEach((element) => {
-  element.addEventListener("click", () => {
-    slideToggle(element.nextElementSibling);
-  });
-});
+(function(removeClass) {
+
+	jQuery.fn.removeClass = function( value ) {
+		if ( value && typeof value.test === "function" ) {
+			for ( var i = 0, l = this.length; i < l; i++ ) {
+				var elem = this[i];
+				if ( elem.nodeType === 1 && elem.className ) {
+					var classNames = elem.className.split( /\s+/ );
+
+					for ( var n = classNames.length; n--; ) {
+						if ( value.test(classNames[n]) ) {
+							classNames.splice(n, 1);
+						}
+					}
+					elem.className = jQuery.trim( classNames.join(" ") );
+				}
+			}
+		} else {
+			removeClass.call(this, value);
+		}
+		return this;
+	}
+
+})(jQuery.fn.removeClass);
