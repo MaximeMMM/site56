@@ -8,78 +8,115 @@
 
 
 
-
 <!DOCTYPE html>
-<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
-<html lang="fr" dir="ltr">
+<!-- Coding by CodingLab | www.codinglabweb.com-->
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <!--<title> Responsive Sidebar Menu  | CodingLab </title>-->
-    <link rel="stylesheet" href="style.css">
-    <!-- Boxicons CDN Link -->
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
-<body>
-  <div class="sidebar">
-    <div class="logo-details">
-      <i class='bx bxl-c-plus-plus icon'></i>
-        <div class="logo_name">SCP : SITE 56</div>
-        <i class='bx bx-menu' id="btn" ></i>
-    </div>
-    <ul class="nav-list">
-   
-      <li>
-        <a href="https://site56.tk">
-          <i class='bx bx-grid-alt'></i>
-          <span class="links_name">1</span>
-        </a>
-         <span class="tooltip">1</span>
-      </li>
-     
-        <li>
-        <a href="https://site56.tk">
-          <i class='bx bx-grid-alt'></i>
-          <span class="links_name">2</span>
-        </a>
-         <span class="tooltip">2</span>
-      </li>
-     
-     
-    </ul>
-  </div>
- 
- 
-  <section class="home-section">
-      <div class="text">EN DEV</div>
-  </section>
- 
- 
- 
- 
-  <script>
-  let sidebar = document.querySelector(".sidebar");
-  let closeBtn = document.querySelector("#btn");
-  let searchBtn = document.querySelector(".bx-search");
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--<title>Sidebar Menu | Side Navigation Bar</title>-->
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Boxicons CSS -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <i class="bx bx-menu menu-icon"></i>
+        <span class="logo-name">CodingLab</span>
+      </div>
+      <div class="sidebar">
+        <div class="logo">
+          <i class="bx bx-menu menu-icon"></i>
+          <span class="logo-name">CodingLab</span>
+        </div>
 
-  closeBtn.addEventListener("click", ()=>{
-    sidebar.classList.toggle("open");
-    menuBtnChange();//calling the function(optional)
-  });
+        <div class="sidebar-content">
+          <ul class="lists">
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-home-alt icon"></i>
+                <span class="link">Dashboard</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-bar-chart-alt-2 icon"></i>
+                <span class="link">Revenue</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-bell icon"></i>
+                <span class="link">Notifications</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-message-rounded icon"></i>
+                <span class="link">Messages</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-pie-chart-alt-2 icon"></i>
+                <span class="link">Analytics</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-heart icon"></i>
+                <span class="link">Likes</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-folder-open icon"></i>
+                <span class="link">Files</span>
+              </a>
+            </li>
+          </ul>
 
-  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
-    sidebar.classList.toggle("open");
-    menuBtnChange(); //calling the function(optional)
-  });
+          <div class="bottom-cotent">
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-cog icon"></i>
+                <span class="link">Settings</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-log-out icon"></i>
+                <span class="link">Logout</span>
+              </a>
+            </li>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-  // following are the code to change sidebar button(optional)
-  function menuBtnChange() {
-   if(sidebar.classList.contains("open")){
-     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
-   }else {
-     closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
-   }
-  }
-  </script>
-</body>
+    <section class="overlay"></section>
+
+    <script>
+      const navBar = document.querySelector("nav"),
+        menuBtns = document.querySelectorAll(".menu-icon"),
+        overlay = document.querySelector(".overlay");
+
+      menuBtns.forEach((menuBtn) => {
+        menuBtn.addEventListener("click", () => {
+          navBar.classList.toggle("open");
+        });
+      });
+
+      overlay.addEventListener("click", () => {
+        navBar.classList.remove("open");
+      });
+    </script>
+  </body>
 </html>
+
