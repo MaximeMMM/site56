@@ -1,15 +1,44 @@
-<link rel="stylesheet" href="/css/sidebar.css">
-  
-<header class="header">
-	<div class="brand-box">
-		<span class="brand">Example Brand</span>
-	</div>
-	
-	<div class="text-box">
-		<h1 class="heading-primary">
-			<span class="heading-primary-main">Heading Primary Main</span>
-			<span class="heading-primary-sub">The secondary heading</span>
-		</h1>
-		<a href="#" class="btn btn-white btn-animated">Discover our tours</a>
-	</div>
-</header>
+/* make a sidebar for html site */
+var sidebar = document.createElement('div');
+sidebar.style.position = 'fixed';
+sidebar.style.top = '0';
+sidebar.style.left = '0';
+sidebar.style.width = '200px';
+sidebar.style.height = '100%';
+sidebar.style.backgroundColor = '#eee';
+sidebar.style.padding = '0px';
+document.body.appendChild(sidebar);
+/* quand on clique sur les choix, sa nous redirige vers une autre page */
+var choice1 = document.createElement('div');
+choice1.innerHTML = 'Choice 1';
+choice1.style.cursor = 'pointer';
+choice1.style.padding = '10px';
+choice1.style.margin = '10px';
+choice1.style.backgroundColor = '#ccc';
+choice1.style.borderRadius = '5px';
+choice1.onclick = function() {
+  window.location.href = 'http://www.google.com';
+};
+sidebar.appendChild(choice1);
+var choice2 = document.createElement('div');
+choice2.innerHTML = 'Choice 2';
+choice2.style.cursor = 'pointer';
+choice2.style.padding = '10px';
+choice2.style.margin = '10px';
+choice2.style.backgroundColor = '#ccc';
+choice2.style.borderRadius = '5px';
+choice2.onclick = function() {
+  window.location.href = 'http://www.google.com';
+};
+sidebar.appendChild(choice2);
+/* ecrit dans l'espace libre de droite, un mot */
+var content = document.createElement('div');
+content.style.position = 'absolute';
+content.style.top = '0';
+content.style.left = '200px';
+content.style.width = 'calc(100% - 200px)';
+content.style.height = '100%';
+content.style.padding = '10px';
+content.style.backgroundColor = '#fff';
+content.innerHTML = 'Content';
+document.body.appendChild(content);
