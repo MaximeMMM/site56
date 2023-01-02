@@ -1,6 +1,6 @@
-local Teams = {
-	Lobbies = {
+
+
 		["LobbyName"] = "sup",
 		["Owner"] = 123
-	}
-}
+
+
