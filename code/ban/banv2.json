@@ -1,8 +1,16 @@
 {
     "Bannissement": {
+        
+        
         "MaxMeDYTB": {
             "Raison": "Spam",
-            "TicketOuvert": "Non"
+            "TicketOuvert": "Fermer"
+        },
+           "Test": {
+            "Raison": "Spam",
+            "TicketOuvert": "Fermer"
         }
+        
+        
     }
 }
