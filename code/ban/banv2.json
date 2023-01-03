@@ -1,8 +1,8 @@
 {
-    "Pets": {
-        "Doge": {
-            "Rarity": 1,
-            "Cost": 100
+    "Bannissement": {
+        "MaxMeDYTB": {
+            "Raison": "Spam",
+            "TicketOuvert": "Non"
         }
     }
 }
