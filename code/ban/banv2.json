@@ -1,7 +1,7 @@
 {
     "Bannissement": {
         "793044473": {
-            "Raison": Spam,
+            "Raison": "Spam",
             "TicketOuvert": "Non"
         }
     }
